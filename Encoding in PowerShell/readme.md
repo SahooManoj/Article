@@ -22,3 +22,23 @@ Here the password is encrypted and stored as `SecureString` which is a `.NET cla
 
 we can store the credential in a variable to use it further in our script as shown below.
 
+![](img/ex-1.3.png)
+
+`$mycred` contains the credential and can be used for authentication. As we can see here the type of `$mycred` is `PSCredential` which proves that this is a `PSCredential` object.
+
+
+As a developer, we may require to check the password complexity from our end. So in that case we need to convert the secure string to text readable format and then by using regex we can check the complexity. So let's take another example to see how we can decrypt the password from secure string to text.
+
+Example 2:
+
+```powershell
+$mycred = Get-Credential
+$password = $MyCred.password
+$bstr = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($password) #converting securestring to byte string
+$decryptPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($bstr) #converting byte string to string
+[Runtime.InteropServices.Marshal]::ZeroFreeBSTR($BSTR) #recommended to free the byte string memory after conversion
+```
+
+Output:
+
+![](img/ex-2.png)
