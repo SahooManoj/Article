@@ -10,7 +10,7 @@ Let see some examples of using `Get-Credential` and it's different role and func
 
 Example 1:
 
-![Basic use of Get-Crendential](img/ex1.1.png)
+![Basic use of Get-Crendential](img/ex-1.1.png)
 
 In the above screenshot I have run the `Get-Credential` cmdlet and as you can see it gives a pop up and asks for the `Username` and `Password` to be passed in the field. We will unable to see the password here as it is sensitive.
 
