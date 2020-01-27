@@ -19,3 +19,6 @@ Once we pass the required credential and hit ok it will create a `PSCredential` 
 ![](img/ex-1.2.png)
 
 Here the password is encrypted and stored as `SecureString` which is a `.NET class`. This is done to keep the password confidential and it automatically get deleted from the memory when the session close.
+
+we can store the credential in a variable to use it further in our script as shown below.
+
