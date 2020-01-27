@@ -42,3 +42,15 @@ $decryptPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($bs
 Output:
 
 ![](img/ex-2.png)
+
+As we can observe from the output we have successfully converted the secure string to text readable format. We have used `Marshal` class for the conversion by calling some of its static method.
+
+`SecureStringToBSTR($password)` this method is used to convert the secure string to byte format and it is compulsory to pass the argument as a secure string otherwise it will throw error. `PtrToStringAuto($bstr)` method takes the binary string as an input and then convert that to the actual string.
+
+Once we are done with the conversion we need to free up the `BSTR` memory space by calling `ZeroFreeBSTR($BSTR)` method, because according to [Marshal.SecureStringToBSTR](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.marshal.securestringtobstr?redirectedfrom=MSDN&view=netframework-4.8#System_Runtime_InteropServices_Marshal_SecureStringToBSTR_System_Security_SecureString_) documentation this process allocates the unmanaged memory required for a string so it's a good practise to free that memory space.
+
+Now as we have decrypted our password we should be aware that this password is now unsecure in our memory. Once we are done with the validation or complexity check we need to remove the text from memory.
+
+We can also take the password from user during run time by `Read-Host`. So Let see how we can secure a string and pass password using `Read-Host`
+
+# Read-Host
