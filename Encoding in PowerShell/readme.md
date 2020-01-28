@@ -51,6 +51,18 @@ Once we are done with the conversion we need to free up the `BSTR` memory space 
 
 Now as we have decrypted our password we should be aware that this password is now unsecure in our memory. Once we are done with the validation or complexity check we need to remove the text from memory.
 
-We can also take the password from user during run time by `Read-Host`. So Let see how we can secure a string and pass password using `Read-Host`
+Let's take another example to see the parameters present in Get-Credential and how we can use them in our script.
+
+Example 3:
+
+![](img/ex-3.1.png)
+
+As we can see from the above screenshot there are 2 kinds of parameter set that means we can use the `Get-Credential` cmdlet in 2 ways. So there are in total 3 parameters `-Credential`, `-UserName` and `-Message`.
+
+By default when we run `Get-Credential` then we get a popup asking the user to input the credential, so the given input is then converted into `PSCredential` and pass as an argument to `Get-Credential` function. so `-Credential` takes `PSCredential` object as an input. If we will manually pass a string in `-Credential` then it will give the same pop up showing the input string as the username and will keep the password field blank, once we give the password it will convert that to the `PSCredential` object first. Let see the same in below screenshot.
+
+![](img/ex-3.2.png)
+
+We can also take the password from user during run time by `Read-Host` cmdlet. So Let see how we can secure a string and pass password using `Read-Host`
 
 # Read-Host
