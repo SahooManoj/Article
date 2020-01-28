@@ -63,6 +63,13 @@ By default when we run `Get-Credential` then we get a popup asking the user to i
 
 ![](img/ex-3.2.png)
 
+As explained above it is asking me to pass the value to the parameter, if we don't pass any value and press cancel then it will throw an error stating `Get-Credential : Cannot process command because of one or
+more missing mandatory parameters: Credential.` as shown below.
+
+![](img/ex-3.3.png)
+
+We have another way of using `Get-Credential` where we can pass `-username` and `-message`
+
 We can also take the password from user during run time by `Read-Host` cmdlet. So Let see how we can secure a string and pass password using `Read-Host`
 
 # Read-Host
