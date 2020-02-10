@@ -86,6 +86,19 @@ $pass = Read-Host "Enter the Password" -AsSecureString
 $pass
 ```
 
-![Passing password using Read-Host](img/ex-4.png)
+![Passing password using Read-Host](img/ex-4.1.png)
 
 As we can see `Read-Host` cmdlet has a parameter called `-AsSecureString` which converts normal `string` to `securestring` as you can see in the above screenshot. We can store the value in a variable to use it further in our code. Here I have stored in `$pass` variable.  
+
+So let see how to convert the following user ID and password to `PSCredential` object.
+
+```powershell
+$user = "testUser"
+$pass = Read-Host "Enter the Password" -AsSecureString
+$cred = New-Object System.Management.Automation.PSCredential($user,$pass)
+$cred
+```
+
+![Creating PSCredential Object](img/ex-4.2.png)
+
+As you can see from the above screenshot we have created PSCredential
