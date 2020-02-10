@@ -68,8 +68,24 @@ more missing mandatory parameters: Credential.` as shown below.
 
 ![](img/ex-3.3.png)
 
-We have another way of using `Get-Credential` where we can pass `-username` and `-message`
+We have another way of using `Get-Credential` where we can pass `-UserName` and `-Message`
+
+![](img/ex-3.4.png)
+
+As you can see in the above screenshot both `-UserName` and `-Message` has been passed together and password field is empty and needs to be filled by the user. This is another way of using `Get-Credential` where it give flexibility to user by passing default username and if user want can change the username value.
 
 We can also take the password from user during run time by `Read-Host` cmdlet. So Let see how we can secure a string and pass password using `Read-Host`
 
 # Read-Host
+
+`Read-Host` cmdlet is used to take input from the user during run time. So if we want to read the password from user then we can use `Read-Host` in the following way:
+
+```powershell
+Read-Host "Enter the Password" -AsSecureString
+$pass = Read-Host "Enter the Password" -AsSecureString
+$pass
+```
+
+![Passing password using Read-Host](img/ex-4.png)
+
+As we can see `Read-Host` cmdlet has a parameter called `-AsSecureString` which converts normal `string` to `securestring` as you can see in the above screenshot. We can store the value in a variable to use it further in our code. Here I have stored in `$pass` variable.  
