@@ -101,4 +101,13 @@ $cred
 
 ![Creating PSCredential Object](img/ex-4.2.png)
 
-As you can see from the above screenshot we have created PSCredential
+As you can see from the above screenshot we have created `PSCredential` by passing required Username and Password. Now we can use `$cred` variable as a credential object.
+
+Now let's move on to another concept where we will use `ConvertTo-SecureString and ConvertFrom-SecureString` cmdlet to convert a simple string to secure string and where we can use this cmdlet to achieve our desire output.
+
+# ConvertTo-SecureString and ConvertFrom-SecureString
+If we have a case where we have to generate a random password by the help of our script and converting it to PSCredential for further use then `Convertto-securestring` cmdlet plays a vital role to fulfil our requirement.
+
+From the name itself we can recognise that it converts a value to `securestring`
+
+
