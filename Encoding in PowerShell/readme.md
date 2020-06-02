@@ -80,6 +80,8 @@ We can also take the password from user during run time by `Read-Host` cmdlet. S
 
 `Read-Host` cmdlet is used to take input from the user during run time. So if we want to read the password from user then we can use `Read-Host` in the following way:
 
+Example 4:
+
 ```powershell
 Read-Host "Enter the Password" -AsSecureString
 $pass = Read-Host "Enter the Password" -AsSecureString
@@ -108,6 +110,36 @@ Now let's move on to another concept where we will use `ConvertTo-SecureString a
 # ConvertTo-SecureString and ConvertFrom-SecureString
 If we have a case where we have to generate a random password by the help of our script and converting it to PSCredential for further use then `Convertto-securestring` cmdlet plays a vital role to fulfil our requirement.
 
-From the name itself we can recognise that it converts a value to `securestring`
+From the name itself we can recognise that it converts a value to `securestring`. Now let's just take an example to understand the command better.
 
+Example 5
 
+```powershell
+function GenerateRandomcharacters($length,$characters){
+    $random = Get-Random -InputObject $(0..($characters.length-1)) -Count $length 
+    return $characters[$random]
+}
+$password = GenerateRandomcharacters -length $(Get-Random -Minimum 5 -Maximum 7) -characters 'abcdefghijklmnopqrstuvwxyz'
+$password += GenerateRandomcharacters -length $(Get-Random -Minimum 1 -Maximum 3) -characters 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+$password += GenerateRandomcharacters -length $(Get-Random -Minimum 1 -Maximum 3) -characters '0123456789'
+$password += GenerateRandomcharacters -length $(Get-Random -Minimum 1 -Maximum 3) -characters '!"§$%&/()=?}][{@#*+'
+$password = GenerateRandomcharacters -length $password.Length -characters $password
+$password = $password -join ""L
+$password
+```
+
+![Generating Random Password](img/ex-5.1.png)
+
+so here I have made a small script to generate a random string which we have considered as the password. No we will be converting the string to secure string and then we can also encode the same to keep it encrypted for future use.
+
+```powershell
+#convert to secure string
+$securestring = $password | ConvertTo-SecureString -AsPlainText -Force
+$securestring
+```
+
+![Creating Secure String](img/ex-5.2.png)
+
+As we can see now the above string or the random password has been converted to `SecureString` and we can now use this secure string to create `PSCredential` and use further.
+
+Now we 
